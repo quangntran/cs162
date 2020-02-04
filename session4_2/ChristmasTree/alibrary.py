@@ -33,7 +33,7 @@ def nameGenerate(count = 1):
     """ Name Generation.
 
     Input:
-        cunt: int. Number of children.
+        count: int. Number of children.
 
     Output:
         List object, containing the names as string.

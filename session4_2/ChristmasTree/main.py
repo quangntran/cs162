@@ -18,11 +18,11 @@ if __name__ == '__main__':
 
     print('-' * 30)
     tree.decorate()
-    tree.show() 
+    tree.show()
 
     print('-' * 30)
     kids = nameGenerate(count = 8)
-    tree.gift (kids)
+    tree.gift(kids)
 
     print('-' * 30)
     tree.gift(kids)
@@ -32,5 +32,4 @@ if __name__ == '__main__':
     try:
         tree.show()
     except:
-        pass    
-
+        pass
