@@ -30,7 +30,7 @@ class Singleton(type):
             cls._instance = super().__call__(*args, **kwargs)
         return cls._instance
 
-
+class YourClass(metaclass=Singleton)
 class FileLog(metaclass=Singleton):
     NAME = 'ANY'
     def __init__(self):
