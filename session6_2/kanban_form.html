@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Notion </title>
+
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <form method="post" action="kanban_form.php">
+      <h1>Task Creation</h1>
+      <p>Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>
+      <fieldset>
+              <legend>Type of Task <strong><abbr title="required">*</abbr></strong></legend>
+              <ul>
+                  <li>
+                    <label for="type_1">
+                      <input type="radio" id="type_1" name="type" value="NYS" >
+                      Not yet started
+                    </label>
+                  </li>
+                  <li>
+                    <label for="type_2">
+                      <input type="radio" id="type_2" name="type" value="IP">
+                      In Progress
+                    </label>
+                  </li>
+                  <li>
+                    <label for="type_3">
+                      <input type="radio" id="type_3" name="type" value="IR">
+                      In Review
+                    </label>
+                  </li>
+                  <li>
+                    <label for="type_4">
+                      <input type="radio" id="type_4" name="type" value="D">
+                      Done
+                    </label>
+                  </li>
+              </ul>
+      </fieldset>
+      <p>
+        <label for="assignment">
+          <span>Assign to: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="assignment" name="assignment">
+      </p>
+      <p>
+        <label for="description">
+          <span>Task Description: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <textarea id="description" name="des"></textarea>
+      </p>
+      <p> <button type="submit">Submit</button> </p>
+    </form>
+  </body>
+</html>
