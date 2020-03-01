@@ -58,27 +58,62 @@ SELECT FIRSTNAME, SURNAME, BALANCE FROM Loans
 SELECT '';
 SELECT '2. Find all loans older than Jan 2017';
 SELECT '----------------------------------------------------';
+SELECT * FROM LOANS
+    WHERE STARTDATE < '2017-01-01 00:00:00';
 
 SELECT '';
 SELECT '3. Find all clients who have more than one loan';
 SELECT '----------------------------------------------------';
+SELECT Clients.*, COUNT(*) AS num_loans FROM Clients
+    JOIN Loans ON Loans.CLIENTNUMBER = Clients.CLIENTNUMBER
+    GROUP BY Loans.CLIENTNUMBER
+    HAVING num_loans > 1;
+    
 
 SELECT '';
 SELECT "4. Find the total balance outstanding over all loans that aren't in arrears";
 SELECT '----------------------------------------------------';
+SELECT SUM(BALANCE) FROM Loans 
+    WHERE STATUS <> 'Arrears' ;
+
+
 
 SELECT '';
 SELECT '5. Are all account numbers unique? (How should we fix this in general)';
 SELECT '----------------------------------------------------';
+SELECT COUNT(*) FROM  -- COUNT THE NUMBER OF REPEATED ACCOUNT 
+    (SELECT COUNT(*) FROM Loans 
+        GROUP BY ACCOUNTNUMBER
+        HAVING COUNT(ACCOUNTNUMBER)>1);
 
 SELECT '';
 SELECT '6. Martina has undergone gender reassignment and is now Martin';
 SELECT '----------------------------------------------------';
+/* We assume we know Martin's id (which is 4) and only update that person's
+first name; i.e., we do not update based on firstname but based on id, necause
+two people may have the same first name, we don't want to update all that is named
+Martina to Martin'*/
+UPDATE Clients
+SET 
+    FIRSTNAME = 'Martin'
+WHERE
+    CLIENTNUMBER = 4;
+SELECT * FROM Clients;
 
 SELECT '';
 SELECT '7. Get a list of email addresses for all clients who paid off a loan';
 SELECT '----------------------------------------------------';
+SELECT Clients.EMAIL FROM Clients
+    JOIN Loans
+    ON Loans.CLIENTNUMBER = Clients.CLIENTNUMBER 
+    AND Loans.STATUS = 'PAID OFF';
 
 SELECT '';
 SELECT '8. Print out the largest loan for each client';
 SELECT '----------------------------------------------------';
+SELECT Clients.FIRSTNAME, MAX(Loans.PRINCIPALDEBT) FROM Clients
+    JOIN Loans
+    ON Loans.CLIENTNUMBER = Clients.CLIENTNUMBER 
+    GROUP BY Clients.CLIENTNUMBER
+    ;
+SELECT ''
