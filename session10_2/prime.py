@@ -8,7 +8,7 @@ BIGFACTOR = 1
 for num in range(1, 101):
     if BIGFACTOR % num != 0:
         BIGFACTOR = BIGFACTOR * num
-
+print(BIGFACTOR)
 
 def is_prime(x):
     ''' Test whether x is a prime number.'''
@@ -16,7 +16,12 @@ def is_prime(x):
     if x % BIGFACTOR == 0:
         return False
     # The fast check failed, now perform exhaustive check.
+    # print('x: ', x)
+    # print('sqrt: ', math.sqrt(x))
+    if x < 0:
+        raise ValueError("x becomes negative due to out of range of type")
     max_factor = int(math.sqrt(x))
+
     for a in range(101, max_factor, 100):
         if not (x % a):
             return False
@@ -28,7 +33,8 @@ def get_next_prime(x):
 
     if x % 2 == 0:
         x = x + 1
+
     while not is_prime(x):
-        x = x + 2
+            x = x + 2
 
     return x

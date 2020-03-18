@@ -15,6 +15,9 @@ class PrimeTests(unittest.TestCase):
     def test_bigger_prime_of_thirteen(self):
         self.assertEqual(prime.get_next_prime(13), 13)
 
+    def test_raise_valueerror_if_negative(self):
+        self.assertRaises(ValueError, prime.is_prime, -1)
+
 
 if __name__ == '__main__':
     unittest.main()
